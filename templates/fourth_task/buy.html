@@ -1,0 +1,37 @@
+{% extends "menu.html" %}
+
+
+
+{% block pagename %}
+    <h1><ins>Персонажи</ins></h1>
+
+
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h2>Базовый уровень</h2>
+    {% for i in basic %}
+        <ul>
+            <li><i>{{ i }}</i><button onclick="location.href='/cart';">Купить</button></li>
+        </ul>
+    {% endfor %}
+
+    <h2>Улучшеный уровень</h2>
+    {% for i in improved %}
+        <ul>
+            <li><i>{{ i }}</i><button onclick="location.href='/cart';">Купить</button></li>
+        </ul>
+    {% endfor %}
+
+    <h2>Совершенный уровень</h2>
+    {% for i in perfect %}
+        <ul>
+            <li><i>{{ i }}</i><button onclick="location.href='/cart';">Купить</button></li>
+        </ul>
+    {% endfor %}
+
+{% endblock %}
