@@ -19,12 +19,13 @@ from django.urls import path
 # from task2.views import Index_class, func_index
 # from task3.views import start_index, buy_index, cart_index
 from task1.views import start_index, buy_index, cart_index
-from task1.views import sign_up_by_django
+from task1.views import sign_up_by_django, news_index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', start_index),
     path('buy/', buy_index),
     path('cart/', cart_index),
-    path('registration/', sign_up_by_django)
+    path('registration/', sign_up_by_django),
+    path('news/', news_index)
 ]

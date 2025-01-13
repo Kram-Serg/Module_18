@@ -2,12 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UserRegister
 from .models import *
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 
-
-# Create your views here.
 def menu_index(request):
     title = 'мой сайт'
     back = 'Вернуться на главную страницу'
@@ -43,7 +42,8 @@ def cart_index(request):
     context = {'title': title, 'back': back, 'cart': cart}
     return render(request, 'fourth_task/cart.html', context)
 
-users = ['Sergei', 'Ilya', 'Olesya']
+
+# users = ['Sergei', 'Ilya', 'Olesya']
 
 
 # Create your views here.
@@ -84,7 +84,6 @@ def sign_up_by_django(request):
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
 
-
             if username in buyers:
                 info['error'] = 'Пользователь уже существует'
                 return HttpResponse('Пользователь уже существует')
@@ -101,3 +100,11 @@ def sign_up_by_django(request):
         form = UserRegister()
 
     return render(request, 'fifth_task/registration_page.html', {'form': form})
+
+
+def news_index(request):
+    news_all = News.objects.all().order_by('-date')
+    paginator = Paginator(news_all, 3)
+    page_number = request.GET.get('page')
+    news = paginator.get_page(page_number)
+    return render(request, 'news.html', {'news': news})
